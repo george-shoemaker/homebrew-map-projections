@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Homebrew Map Projections</title>
+
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="sketch.js"></script>
+
+    <style>
+      #main { padding: 50px; }
+    </style>
+  </head>
+
+  <body>
+    <div id="main">
+      <h1>Homebrew Map Projections</h1>
+      <p> George Shoemaker, Novemebr 2024</p>
+      <p> Taking 3D lattitude & longitude coordinates and plotting them on a 2D screen.</p>
+      <h2>Equirectangular Projection</h2>
+      <p>As simple as it gets! Use <i>longitude</i> for <b>X</b> and <i>latitude</i> for <b>Y</b> and you get a decent projection.</p>
+      <p>Equirectangular seriously stretches features horizontally as you approach the poles.</p>
+    
+      <h2>Mercator Projection</h2>
+      <p>A bit more sophisticated. Keep using <i>longitude</i> for <b>X</b>.</p>
+
+      <p><b>Y</b> = <i>map width</i> * ln [ tan( π / 4 + <i>latitude</i> / 2 ) ] </p>
+      <p>Mercator is know for stretching features vertically as you approach the poles. In fact, the poles themselves result in infinitely large <b>Y</b> values.<br><br></p>
+
+      <div id="sketch-holder"></div>
+
+      <h2>Resources used</h2>
+      <ul>
+        <li><a href="https://marksmath.org/classes/common/MapProjection.pdf">Map projection: An intro for multivariable calculus</a> by Professor Mark McClure</li>
+        <li><a href="https://stackoverflow.com/a/14457180">Mercator pseudo code</a> by Michel Feldheim on Stack Overflow</li>
+        <li><a href="https://p5js.org/">p5.js</a> to plot polygons on the screen</li>
+        <li><a href="https://www.google.com/earth/about/">Google Earth desktop</a> to trace lat / long polygons</li>
+      </ul>
+    </div>
+  </body>
+</html>
