@@ -22,11 +22,11 @@ function parseUnprojectedStrs(strs) {
   );
 }
 
-function latLongToEquiRectangular(lat, long) {
-  return [long, lat];
+function latLongToEquiRectangular(long, lat) {
+  return [long, lat]; // :P
 }
 
-function equiRectangularToScreen(x,y) {
+function translateToScreen(x,y) {
 
   const maxX = 360;
   const maxY = 180;
@@ -46,15 +46,6 @@ function equiRectangularToScreen(x,y) {
 }
 
 function latLongToMercator(lat, long) {
-  // natural log of, abs value of, sec lat + tan lat)
-
-  let sum = 1.0 / cos(lat) + tan(lat);
-  let y = Math.log( Math.abs(sum) );
-
-  return [long, y];
-}
-
-function latLongToMercator2(lat, long) {
   
   let latRadians = lat * Math.PI / 180;
   let sum = Math.PI / 4 + latRadians / 2
@@ -78,25 +69,25 @@ function setup() {
 
   // EQUI RECTANGULAR
   americasERScreenPts = parsedAmericas
-    .map( pt => latLongToEquiRectangular(pt[1], pt[0]))
-    .map( pt => equiRectangularToScreen(pt[0], pt[1]))
+    .map( pt => latLongToEquiRectangular(pt[0], pt[1]))
+    .map( pt => translateToScreen(pt[0], pt[1]))
     .map( pt => [pt[0], pt[1] + yOffset]);
 
   californiaERScreenPts = parsedCalifornia
-    .map( pt => latLongToEquiRectangular(pt[1], pt[0]))
-    .map( pt => equiRectangularToScreen(pt[0], pt[1]))
+    .map( pt => latLongToEquiRectangular(pt[0], pt[1]))
+    .map( pt => translateToScreen(pt[0], pt[1]))
     .map( pt => [pt[0], pt[1] + yOffset]);
 
  
   // MERCATOR
   americasMercatorScreenPts = parsedAmericas
-    .map( pt => latLongToMercator2(pt[1], pt[0]))
-    .map( pt => equiRectangularToScreen(pt[0], pt[1]))
+    .map( pt => latLongToMercator(pt[1], pt[0]))
+    .map( pt => translateToScreen(pt[0], pt[1]))
     .map( pt => [pt[0] + 800, pt[1] + yOffset]);
 
   californiaMercatorScreenPts = parsedCalifornia
-    .map( pt => latLongToMercator2(pt[1], pt[0]))
-    .map( pt => equiRectangularToScreen(pt[0], pt[1]))
+    .map( pt => latLongToMercator(pt[1], pt[0]))
+    .map( pt => translateToScreen(pt[0], pt[1]))
     .map( pt => [pt[0] + 800, pt[1] + yOffset]);
 
   draw();
