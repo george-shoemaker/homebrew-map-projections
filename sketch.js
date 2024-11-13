@@ -22,7 +22,7 @@ function parseUnprojectedStrs(strs) {
   );
 }
 
-function latLongToEquiRectangular(long, lat) {
+function longLatToEquiRectangular(long, lat) {
   return [long, lat]; // :P
 }
 
@@ -69,12 +69,12 @@ function setup() {
 
   // EQUI RECTANGULAR
   americasERScreenPts = parsedAmericas
-    .map( pt => latLongToEquiRectangular(pt[0], pt[1]))
+    .map( pt => longLatToEquiRectangular(pt[0], pt[1]))
     .map( pt => translateToScreen(pt[0], pt[1]))
     .map( pt => [pt[0], pt[1] + yOffset]);
 
   californiaERScreenPts = parsedCalifornia
-    .map( pt => latLongToEquiRectangular(pt[0], pt[1]))
+    .map( pt => longLatToEquiRectangular(pt[0], pt[1]))
     .map( pt => translateToScreen(pt[0], pt[1]))
     .map( pt => [pt[0], pt[1] + yOffset]);
 
