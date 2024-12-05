@@ -125,7 +125,7 @@ function draw() {
   // Equator line
   strokeWeight(3);
   stroke('rgba(20, 20, 20, 0.4)');
-  const equatorY = screenY / 2 + yOffset / 2;
+  const equatorY = screenY / 2 + yOffset;
   line(0, equatorY, screenX, equatorY);
 
   textSize(50);
